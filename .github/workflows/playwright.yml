@@ -24,7 +24,7 @@ jobs:
         EMAIL: ${{ secrets.EMAIL }}
         PASSWORD: ${{ secrets.PASSWORD }}
         PLAYWRIGHT_BLOB_OUTPUT_DIR: blob-report/smoke-login
-      run: npx playwright test tests/shop.spec.ts --project=chromium --grep @SmokeLogin --screenshot=on --reporter=list --reporter=blob --output=test-results/smoke-login
+      run: npx playwright test tests/shop.spec.ts --project=chromium --grep @SmokeLogin --reporter=list --reporter=blob --output=test-results/smoke-login
 
     - name: Run SmokeDashboard tests
       if: ${{ !cancelled() }}
@@ -34,7 +34,7 @@ jobs:
         EMAIL: ${{ secrets.EMAIL }}
         PASSWORD: ${{ secrets.PASSWORD }}
         PLAYWRIGHT_BLOB_OUTPUT_DIR: blob-report/smoke-dashboard
-      run: npx playwright test tests/shop.spec.ts --project=chromium --grep @SmokeDashboard --screenshot=on --reporter=list --reporter=blob --output=test-results/smoke-dashboard
+      run: npx playwright test tests/shop.spec.ts --project=chromium --grep @SmokeDashboard --reporter=list --reporter=blob --output=test-results/smoke-dashboard
 
     - name: Run regression tests
       if: ${{ !cancelled() }}
@@ -44,7 +44,7 @@ jobs:
         EMAIL: ${{ secrets.EMAIL }}
         PASSWORD: ${{ secrets.PASSWORD }}
         PLAYWRIGHT_BLOB_OUTPUT_DIR: blob-report/regression
-      run: npx playwright test tests/shop.spec.ts --project=chromium --grep @regression --screenshot=on --reporter=list --reporter=blob --output=test-results/regression
+      run: npx playwright test tests/shop.spec.ts --project=chromium --grep @regression --reporter=list --reporter=blob --output=test-results/regression
 
     - name: Merge Playwright reports
       if: ${{ !cancelled() }}
