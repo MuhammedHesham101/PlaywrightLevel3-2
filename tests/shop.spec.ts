@@ -84,7 +84,9 @@ test.describe("Cart", { tag: "@regression" }, () => {
 
   test("show zara coat 3 in cart", async ({ page }) => {
     const dashboardObj = new Dashboard(page);
+    const countBefore = await dashboardObj.getCartCount();
     await dashboardObj.addProduct(products.zara);
+    await dashboardObj.expectCartCount(countBefore + 1);
     await dashboardObj.openCart();
     const cartObj = new CartPage(page);
     await cartObj.expectAddedProduct(products.zara);
