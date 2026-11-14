@@ -16,6 +16,20 @@ const products = {
 test.describe("Login", { tag: "@SmokeLogin" }, () => {
   test.describe.configure({ mode: "parallel" });
 
+  test("valid login reaches dashboard", async ({ page }) => {
+    if (!email || !password) {
+      throw new Error("SET EMAIL AND PASSWORD inside the .env file");
+    }
+
+    const logObj = new LoginPage(page);
+    await logObj.validLogin(email, password);
+    await logObj.logout();
+  });
+});
+
+test.describe("Login negatives", { tag: "@regression" }, () => {
+  test.describe.configure({ mode: "parallel" });
+
   test("invalid login should stay on login page", async ({ page }) => {
     const logObj = new LoginPage(page);
     await logObj.invalidLogin("wrong@email.com", "WrongPass123");
